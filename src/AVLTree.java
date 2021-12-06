@@ -135,6 +135,7 @@ public class AVLTree extends SIDCObjects{
         } else if (key > root.SIDC) {
             root.right = deleteNode(root.right, key);
         } else {
+        	
             if ((root.left == null) || (root.right == null))
             {
                 Node temp = null;
@@ -150,7 +151,9 @@ public class AVLTree extends SIDCObjects{
                 }
                 else
                     root = temp;
-                this.count --;
+                
+                this.count--;
+            	System.out.println("successfully deleted !!");
             }
             else
             {
@@ -217,9 +220,14 @@ public class AVLTree extends SIDCObjects{
     }
 
     public int generate() {
+    	if(this.root == null) {
+    		 this.idCounter++;
+    		return 0;
+    	}
 
         Node p = findNode(this.root, this.idCounter);
 
+        
         while(p != null){
             this.idCounter++;
             p = findNode(this.root, this.idCounter);
@@ -256,7 +264,6 @@ public class AVLTree extends SIDCObjects{
         if (node != null) {
 
             saveInOrder(node.left);
-            System.out.println("==>"+node.SIDC);
             this.inOrderTraversal += node.SIDC+",";
             saveInOrder(node.right);
 
@@ -294,7 +301,6 @@ public class AVLTree extends SIDCObjects{
         this.inOrderTraversal = "";
         saveInOrder(this.root);
 
-        System.out.println(inOrderTraversal);
 
 
         String[] arr = this.inOrderTraversal.split(",");
@@ -348,6 +354,11 @@ public class AVLTree extends SIDCObjects{
 
         int index1 = findIndexInSortedArr(arr, key1);
         int index2 = findIndexInSortedArr(arr, key2);
+        
+        if(index1== -1|| index2 == -1) {
+        	System.out.println("One of the Key doesn't exists in DB");
+        	return 0;
+        }
 
         return index2 - index1 + 1;
     }
