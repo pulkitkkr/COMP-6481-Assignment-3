@@ -147,7 +147,6 @@ public class CleverSIDCDriver {
 	        
 	        case 10:
 	        	System.exit(0);
-	        
 	        }
         
         }
