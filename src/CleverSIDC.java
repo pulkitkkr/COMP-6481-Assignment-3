@@ -20,7 +20,7 @@ class CleverSIDC {
     private void handleThresholdChange(){
         System.out.println("Size = "+sidcHandler.getSize());
         // Convert AVL to DoublyLinkedList
-        if(sidcHandler.getSize()==INSERT_THRESHOLD-1 && this.sidcHandler instanceof AVLTree){
+        if(sidcHandler.getSize()<=INSERT_THRESHOLD-1 && this.sidcHandler instanceof AVLTree){
             System.out.println("Value Less Than Threshold: "+INSERT_THRESHOLD+". Using Sorted Doubly Linked List Now");
             int[] items = sidcHandler.getItemsInArr();
 
@@ -33,7 +33,7 @@ class CleverSIDC {
             this.sidcHandler = newHandler;
         }
 
-        if(sidcHandler.getSize()==INSERT_THRESHOLD){
+        if(sidcHandler.getSize()>=INSERT_THRESHOLD){
             if(this.sidcHandler instanceof SortedDoublyLinkedList){
                 System.out.println("Value Greater Than Threshold: "+INSERT_THRESHOLD+". Using AVL Trees Now");
                 int[] items = sidcHandler.getItemsInArr();
