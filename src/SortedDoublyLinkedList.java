@@ -35,6 +35,15 @@ class SortedDoublyLinkedList extends SIDCObjects{
 
     public int rangeKey(int key1, int key2) {
         Node temp = this.head;
+
+        Node k1 = findNode(key1);
+        Node k2 = findNode(key2);
+        
+        if(k1==null || k2 == null) {
+        	System.out.println("One of the Key doesn't exists in DB");
+        	return 0;
+        }
+        
         int rangeCount = 0;
 
         while (temp != null) {
@@ -133,6 +142,8 @@ class SortedDoublyLinkedList extends SIDCObjects{
                         this.head = temp.next;
                     }
 
+    	        	System.out.println(key+" successfully deleted.");
+
                     break;
                 } else if(temp.SIDC > key){
                     System.out.println("The Key: "+key+" is not present.");
@@ -183,6 +194,9 @@ class SortedDoublyLinkedList extends SIDCObjects{
     }
 
     public int generate(Node head, int UID){
+    	if(head == null) {
+    		return 0;
+    	}
         if(UID < head.SIDC){
             return UID;
         } else if(UID == head.SIDC){
